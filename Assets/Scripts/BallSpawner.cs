@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
@@ -11,6 +12,32 @@ public class BallSpawner : MonoBehaviour
     private int currBall = 0;
     [SerializeField]
     private int force = 100;
+
+    
+    void Start()
+    {
+        spawnVec = spawnPoint.transform.position;
+        float startIn = 2;
+        float every = 2;
+        InvokeRepeating("SpawnBall", startIn, every);
+    }
+
+    void SpawnBall()
+    {
+        // define next index of ball type to spawn
+        if (currBall >= ball.Length)
+        {
+            currBall = 0;
+        }
+        Debug.Log(currBall);
+
+        // spawn ball
+        var ballToSpawn = Instantiate(ball[currBall], spawnVec, Quaternion.identity) as GameObject;
+        ballToSpawn.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Acceleration);
+
+        currBall++;
+    }
+    /*
 
     void Start()
     {
@@ -44,4 +71,5 @@ public class BallSpawner : MonoBehaviour
         
 
     }
+    */
 }
