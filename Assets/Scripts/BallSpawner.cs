@@ -29,7 +29,7 @@ public class BallSpawner : MonoBehaviour
         {
             currBall = 0;
         }
-        Debug.Log(currBall);
+        //Debug.Log(currBall);
 
         // spawn ball
         var ballToSpawn = Instantiate(ball[currBall], spawnVec, Quaternion.identity) as GameObject;
