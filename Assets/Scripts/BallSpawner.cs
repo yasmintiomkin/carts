@@ -37,8 +37,8 @@ public class BallSpawner : MonoBehaviour
             {
                 currBall = 0;
             }
-            Debug.Log(currBall);
-            Debug.Log(ball.Length);
+            //Debug.Log(currBall);
+            //Debug.Log(ball.Length);
             yield return new WaitForSeconds(4);
         }
         
