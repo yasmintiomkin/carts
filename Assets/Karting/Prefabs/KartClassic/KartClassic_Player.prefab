@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 3934862071804020739}
   - component: {fileID: 3934862071804020767}
   - component: {fileID: 3934862071804020760}
+  - component: {fileID: 5633463174163268428}
   - component: {fileID: 2048534179}
   - component: {fileID: 438660967275396939}
   - component: {fileID: 132457197}
@@ -529,6 +530,18 @@ MonoBehaviour:
   RaycastDist: 0.3
   MinHeightThreshold: 0.02
   SuspensionBody: {fileID: 2753088075895370229}
+--- !u!114 &5633463174163268428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3934862071804020761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40b653fefc8fbb42842fa62c44f3406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2048534179
 MonoBehaviour:
   m_ObjectHideFlags: 0

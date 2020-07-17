@@ -5,10 +5,12 @@ namespace KartGame.KartSystems
 {
     public class ArcadeKart : MonoBehaviour
     {
+
         /// <summary>
         /// Contains parameters that can adjust the kart's behaviors temporarily.
         /// </summary>
         [System.Serializable]
+
         public class StatPowerup
         {
             public ArcadeKart.Stats modifiers;
