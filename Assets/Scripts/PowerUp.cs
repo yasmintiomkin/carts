@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    private GameObject[] ballsInScene;
 
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (other.CompareTag("Player"))
+        {
+            ballsInScene = GameObject.FindGameObjectsWithTag("Ball");
+            foreach(GameObject ball in ballsInScene)
+            {
+                ball.GetComponent<Ball>().PowerOn();
+                Debug.Log("Powerup on");
+            }
+        }
     }
 }

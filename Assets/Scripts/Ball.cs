@@ -32,20 +32,20 @@ public class Ball : MonoBehaviour
         
     }
 
-    public void PowerUp(bool on)
+    public void PowerOn()
     {
-        if (on)
-        {
-            sphereCollider.material.bounciness = bouncinessOrig * powerUpBouncinessScale;
-            sphereCollider.material.dynamicFriction = dynamicFrictionOrig * powerUpDynamicFrictionScale;
-            rb.mass = massOrig / powerUpMass;
-        }
-        else
-        {
-            sphereCollider.material.bounciness = bouncinessOrig;
-            sphereCollider.material.dynamicFriction = dynamicFrictionOrig;
-            rb.mass = massOrig;
-        }
+        sphereCollider.material.bounciness = bouncinessOrig * powerUpBouncinessScale;
+        sphereCollider.material.dynamicFriction = dynamicFrictionOrig * powerUpDynamicFrictionScale;
+        rb.mass = massOrig / powerUpMass;
+        Invoke("PowerOff", 5);
+    }
+    public void PowerOff()
+    {
+
+        sphereCollider.material.bounciness = bouncinessOrig;
+        sphereCollider.material.dynamicFriction = dynamicFrictionOrig;
+        rb.mass = massOrig;
+        Debug.Log("Powerup off");
     }
 
 }
