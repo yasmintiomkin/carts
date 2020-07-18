@@ -70,7 +70,7 @@ public class BallSpawner : MonoBehaviour
             return;
         }
 
-        Debug.Log("total balls: " + totalBalls + ", totalSpawned" + totalSpawned);
+        //Debug.Log("total balls: " + totalBalls + ", totalSpawned" + totalSpawned);
 
         Ball.BallType ballTypeToSpawn = NextBallType();
         //Debug.Log("creating " + ballTypeToSpawn);
