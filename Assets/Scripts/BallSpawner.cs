@@ -86,7 +86,7 @@ public class BallSpawner : MonoBehaviour
 
         // sort so largest weight is first
         //weights.OrderByDescending(w => w.weight).ToList();
-        weights.Sort((w1, w2) => w1.weight.CompareTo(w2.weight));
+        //weights.Sort((w1, w2) => w1.weight.CompareTo(w2.weight));
         //Debug.Log(weights);
     }
 
@@ -94,7 +94,6 @@ public class BallSpawner : MonoBehaviour
     {
         typesStack = new List<Ball.BallType>();
 
-        int currentWeight = 0;
         foreach (WeightBallType wbt in weights)
         {
             for (int i = 0; i < wbt.weight; i++)
