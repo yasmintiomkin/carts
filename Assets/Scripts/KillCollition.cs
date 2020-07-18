@@ -5,11 +5,13 @@ using UnityEngine;
 public class KillCollition : MonoBehaviour
 {
     [SerializeField] Player player;
+    public BallSpawner ballSpawner;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Ball")
         {
+            ballSpawner.BallDestroyedNotification(other.gameObject);
             Destroy(other.gameObject);
         }
 

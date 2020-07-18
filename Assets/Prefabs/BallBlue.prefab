@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8009554169876457721}
   - component: {fileID: 4259471796250167097}
   m_Layer: 0
-  m_Name: Ball1
+  m_Name: BallBlue
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,5 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e823585b6e7207d42844fcd9e4535c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballType: 2
   powerUpBouncinessScale: 2
   powerUpDynamicFrictionScale: 2
+  powerUpMass: 2

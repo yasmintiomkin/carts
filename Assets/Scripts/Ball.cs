@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public enum BallType { red, green, blue}
+
+    public BallType ballType = BallType.green;
+
     SphereCollider sphereCollider;
     float bouncinessOrig;
     float dynamicFrictionOrig;

@@ -609,12 +609,12 @@ GameObject:
   - component: {fileID: 240084276}
   - component: {fileID: 240084275}
   m_Layer: 0
-  m_Name: WaveSpawner
+  m_Name: BallSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &240084275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,12 +627,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99121c421f8333041b234c9c594318bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball:
-  - {fileID: 4692681909449347950, guid: 0403aaed4c96411408acb3b84086cd99, type: 3}
-  - {fileID: 4692681909449347950, guid: 2971ac0ad1f7c164f9627a50b2117c9a, type: 3}
-  - {fileID: 4692681909449347950, guid: 5a7a4ae004c9ff44d8dba0eeed4a0e78, type: 3}
+  ballTypes:
+  - {fileID: 4259471796250167097, guid: 0403aaed4c96411408acb3b84086cd99, type: 3}
+  - {fileID: 694375588488952019, guid: 5a7a4ae004c9ff44d8dba0eeed4a0e78, type: 3}
+  - {fileID: 103895925146526860, guid: 2971ac0ad1f7c164f9627a50b2117c9a, type: 3}
+  balls: []
   spawnPoint: {fileID: 1356766459}
-  force: 1000
+  maxConcurrentBallsInArena: 10
+  weightSpawnBallBlue: 2
+  weightSpawnBallRed: 1
+  weightSpawnBallGreen: 5
+  force: 100
 --- !u!4 &240084276
 Transform:
   m_ObjectHideFlags: 0
@@ -1939,7 +1944,6 @@ GameObject:
   - component: {fileID: 575873685}
   - component: {fileID: 575873684}
   - component: {fileID: 575873683}
-  - component: {fileID: 575873686}
   m_Layer: 0
   m_Name: Destroyer
   m_TagString: Untagged
@@ -1960,6 +1964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 775890160}
+  ballSpawner: {fileID: 0}
 --- !u!65 &575873684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1987,21 +1992,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &575873686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575873682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99121c421f8333041b234c9c594318bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ball: []
-  spawnPoint: {fileID: 0}
-  force: 100
 --- !u!1001 &582113425
 PrefabInstance:
   m_ObjectHideFlags: 0
