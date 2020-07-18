@@ -23,6 +23,8 @@ public class BallSpawner : MonoBehaviour
     public List<GameObject> balls = new List<GameObject>();
     public Transform spawnPoint;
     public int maxConcurrentBallsInArena = 10;
+    public int maxBallsToSpawn = 20;
+    private int totalSpawned = 0;
 
     public int weightSpawnBallBlue  = 2;
     public int weightSpawnBallRed   = 1;
@@ -56,16 +58,22 @@ public class BallSpawner : MonoBehaviour
             return;
         }
 
+        if (totalSpawned >= maxBallsToSpawn)
+        {
+            return;
+        }
+
         int totalBalls = balls.Count;
-        Debug.Log("total balls: " + totalBalls);
 
         if (totalBalls >= maxConcurrentBallsInArena)
         {
             return;
         }
 
+        Debug.Log("total balls: " + totalBalls + ", totalSpawned" + totalSpawned);
+
         Ball.BallType ballTypeToSpawn = NextBallType();
-        Debug.Log("creating " + ballTypeToSpawn);
+        //Debug.Log("creating " + ballTypeToSpawn);
 
         // spawn ball
         GameObject ballGameObjectToSpawn = GetBallPFByType(ballTypeToSpawn);
@@ -74,6 +82,7 @@ public class BallSpawner : MonoBehaviour
             GameObject spawnedBall = Instantiate(ballGameObjectToSpawn, spawnVec, Quaternion.identity) as GameObject;
             spawnedBall.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Acceleration);
             balls.Add(spawnedBall);
+            totalSpawned++;
         }
     }
 
