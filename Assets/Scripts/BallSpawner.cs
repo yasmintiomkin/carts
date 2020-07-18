@@ -29,6 +29,7 @@ public class BallSpawner : MonoBehaviour
     public int weightSpawnBallGreen = 5;
     private int totalWeight;
     private List<WeightBallType> weights = new List<WeightBallType>();
+    private List<Ball.BallType> typesStack = new List<Ball.BallType>();
 
     private Vector3 spawnVec;
 
@@ -86,29 +87,58 @@ public class BallSpawner : MonoBehaviour
         // sort so largest weight is first
         //weights.OrderByDescending(w => w.weight).ToList();
         weights.Sort((w1, w2) => w1.weight.CompareTo(w2.weight));
-        Debug.Log(weights);
+        //Debug.Log(weights);
+    }
+
+    private void NewBallTypesStack()
+    {
+        typesStack = new List<Ball.BallType>();
+
+        int currentWeight = 0;
+        foreach (WeightBallType wbt in weights)
+        {
+            for (int i = 0; i < wbt.weight; i++)
+            {
+                typesStack.Add(wbt.ballType);
+            }
+        }
     }
 
     private Ball.BallType NextBallType()
     {
-        // generate next ball type randomly by weight
-        Random.seed = System.DateTime.Now.Millisecond; // make randow seem more random
-        int randomWeight = Random.Range(1, totalWeight+1); // returns 1-total
-        int currentWeight = 0;
-
-        foreach (WeightBallType wbt in weights)
+        if (typesStack.Count() == 0)
         {
-            currentWeight += wbt.weight;
-            Debug.Log("totalWeight: " + totalWeight + ",randomWeight: " + randomWeight + ", wbt.weight: " + wbt.weight + ", currentWeight:" + currentWeight);
-
-            if (randomWeight <= currentWeight)
-            {
-                return wbt.ballType;
-            }
+            NewBallTypesStack();
         }
-        
-        return Ball.BallType.green; // we should not get here
+
+        // generate next ball type randomly by weight
+        Random.InitState(System.DateTime.Now.Millisecond); // make randow seem more random
+        int randomIndex = Random.Range(0, typesStack.Count());
+
+        Ball.BallType ballType = typesStack[randomIndex];
+        typesStack.RemoveAt(randomIndex);
+
+        return ballType;
     }
+    //private Ball.BallType NextBallType()
+    //{
+    //    // generate next ball type randomly by weight
+    //    Random.seed = System.DateTime.Now.Millisecond; // make randow seem more random
+    //    int randomWeight = Random.Range(1, totalWeight+1); // returns 1-total
+    //    int currentWeight = 0;
+
+    //    foreach (WeightBallType wbt in weights)
+    //    {
+    //        currentWeight += wbt.weight;
+
+    //        if (randomWeight <= currentWeight)
+    //        {
+    //            return wbt.ballType;
+    //        }
+    //    }
+        
+    //    return Ball.BallType.green; // we should not get here
+    //}
 
     //private int GetNumBallsByType(Ball.BallType ballType)
     //{
