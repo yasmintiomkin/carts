@@ -19,8 +19,12 @@ public class Propellor : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        firstContact = collision.GetContact(0).point - collision.transform.position;
-        collision.rigidbody.AddForce(firstContact.normalized * pushForce, ForceMode.Acceleration);
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            firstContact = collision.GetContact(0).point - collision.transform.position;
+            collision.rigidbody.AddForce(firstContact.normalized * pushForce, ForceMode.Acceleration);
+        }
+
     }
 
 }

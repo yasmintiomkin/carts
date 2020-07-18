@@ -2,7 +2,7 @@
 
 namespace KartGame.KartSystems
 {
-
+    
     public interface IInput
     {
         Vector2 GenerateInput();

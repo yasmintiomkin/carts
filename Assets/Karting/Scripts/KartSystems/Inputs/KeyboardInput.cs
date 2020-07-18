@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace KartGame.KartSystems {
 
@@ -6,11 +9,14 @@ namespace KartGame.KartSystems {
     {
         public string Horizontal = "Horizontal";
         public string Vertical = "Vertical";
+        public Joystick joystick;
+
+
 
         public override Vector2 GenerateInput() {
             return new Vector2 {
-                x = Input.GetAxis(Horizontal),
-                y = Input.GetAxis(Vertical)
+                x = joystick.Horizontal,
+                y = joystick.Vertical
             };
         }
     }
