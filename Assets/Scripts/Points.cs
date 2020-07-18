@@ -9,6 +9,8 @@ public class Points : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] Text textOnGates;
 
+    private float scoreMulti = 0;
+
     private void Start()
     {
         textOnGates.text = score.ToString();
@@ -19,8 +21,20 @@ public class Points : MonoBehaviour
     {
         if (other.gameObject.tag == "Ball")
         {
-            gameManager.AddPoint(score);
-            Debug.Log("Enter");
+            if (other.gameObject.name == "BallBlue")
+            {
+                scoreMulti = 1.5f;
+            }
+            else if (other.gameObject.name == "BallRed")
+            {
+                scoreMulti = 2f;
+            }
+            else
+            {
+                scoreMulti = 1;
+            }
+            gameManager.AddPoint(score*scoreMulti);
+
         }
         
         if (gameManager == null)

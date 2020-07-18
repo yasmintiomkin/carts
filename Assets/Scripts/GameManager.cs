@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int score = 0;
+    public float score = 0;
 
     [SerializeField] Text scoreText;
 
-    public void AddPoint(int scoreAmount)
+    public void AddPoint(float scoreAmount)
     {
         score += scoreAmount;
         scoreText.text = $"Points: {score.ToString("N0")}";
