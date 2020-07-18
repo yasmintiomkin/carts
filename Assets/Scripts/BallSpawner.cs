@@ -6,6 +6,18 @@ using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
 {
+    private struct WeightBallType
+    {
+        public int weight;
+        public Ball.BallType ballType;
+
+        public WeightBallType(int weight, Ball.BallType ballType) : this()
+        {
+            this.weight = weight;
+            this.ballType = ballType;
+        }
+    }
+
     public List<Ball> ballTypes;
 
     public List<GameObject> balls = new List<GameObject>();
@@ -15,9 +27,8 @@ public class BallSpawner : MonoBehaviour
     public int weightSpawnBallBlue  = 2;
     public int weightSpawnBallRed   = 1;
     public int weightSpawnBallGreen = 5;
-
-    private float percentBlue;
-    private float percentGreen;
+    private int totalWeight;
+    private List<WeightBallType> weights = new List<WeightBallType>();
 
     private Vector3 spawnVec;
 
@@ -29,9 +40,7 @@ public class BallSpawner : MonoBehaviour
     
     void Start()
     {
-        int totalWeight = weightSpawnBallBlue + weightSpawnBallGreen + weightSpawnBallRed;
-        percentBlue = weightSpawnBallBlue / totalWeight;
-        percentGreen = weightSpawnBallGreen / totalWeight;
+        PrepareWeightsOnStart();
 
         spawnVec = spawnPoint.transform.position;
         float startIn = 2;
@@ -41,54 +50,75 @@ public class BallSpawner : MonoBehaviour
 
     void SpawnBall()
     {
-        if (balls.Count() >= maxConcurrentBallsInArena || !shouldSpawn)
+        if (!shouldSpawn)
         {
             return;
         }
 
-        // decide on next ball type to spawn by weight
-        int numBlue = GetNumBallsByType(Ball.BallType.blue);
-        int numGreen = GetNumBallsByType(Ball.BallType.green);
-        int totalBalls = balls.Count();
+        int totalBalls = balls.Count;
+        Debug.Log("total balls: " + totalBalls);
 
-        Ball.BallType ballTypeToSpawn = Ball.BallType.red;
-        if (totalBalls == 0 || numBlue / totalBalls < percentBlue)
+        if (totalBalls >= maxConcurrentBallsInArena)
         {
-            ballTypeToSpawn = Ball.BallType.blue;
+            return;
         }
-        else if (numGreen / totalBalls < percentGreen)
-        {
-            ballTypeToSpawn = Ball.BallType.green;
-        }
-        Debug.Log(ballTypeToSpawn);
+
+        Ball.BallType ballTypeToSpawn = NextBallType();
+        Debug.Log("creating " + ballTypeToSpawn);
 
         // spawn ball
-        GameObject ballGameObjectToSpawn = GetBallByType(ballTypeToSpawn);
+        GameObject ballGameObjectToSpawn = GetBallPFByType(ballTypeToSpawn);
         if (ballGameObjectToSpawn != null)
         {
-            GameObject ballToSpawn = Instantiate(ballGameObjectToSpawn, spawnVec, Quaternion.identity) as GameObject;
-            ballToSpawn.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Acceleration);
+            GameObject spawnedBall = Instantiate(ballGameObjectToSpawn, spawnVec, Quaternion.identity) as GameObject;
+            spawnedBall.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Acceleration);
+            balls.Add(spawnedBall);
         }
     }
 
-    private int GetNumBallsByType(Ball.BallType ballType)
+    private void PrepareWeightsOnStart()
     {
-        return 0;
-        //balls.Where(ball => ball.ballType == Ball.BallType.blue).Count();
+        totalWeight = weightSpawnBallBlue + weightSpawnBallGreen + weightSpawnBallRed;
+        weights.Add(new WeightBallType(weightSpawnBallBlue, Ball.BallType.blue));
+        weights.Add(new WeightBallType(weightSpawnBallGreen, Ball.BallType.green));
+        weights.Add(new WeightBallType(weightSpawnBallRed, Ball.BallType.red));
+
+        // sort so largest weight is first
+        //weights.OrderByDescending(w => w.weight).ToList();
+        weights.Sort((w1, w2) => w1.weight.CompareTo(w2.weight));
+        Debug.Log(weights);
     }
 
-    private GameObject GetBallByType(Ball.BallType ballType)
+    private Ball.BallType NextBallType()
     {
-        //for (int i = 0; i < ballTypes.Count(); i++)
-        //{
-        //    if (ballTypes[i].GetComponent<Ball>().ballType == ballType)
-        //    {
-        //        return ballTypes[i];
-        //    }
-        //}
-        //return null;
-        IEnumerable res = ballTypes.Where(ball => ball.ballType == ballType);
+        // generate next ball type randomly by weight
+        Random.seed = System.DateTime.Now.Millisecond; // make randow seem more random
+        int randomWeight = Random.Range(1, totalWeight+1); // returns 1-total
+        int currentWeight = 0;
 
+        foreach (WeightBallType wbt in weights)
+        {
+            currentWeight += wbt.weight;
+            Debug.Log("totalWeight: " + totalWeight + ",randomWeight: " + randomWeight + ", wbt.weight: " + wbt.weight + ", currentWeight:" + currentWeight);
+
+            if (randomWeight <= currentWeight)
+            {
+                return wbt.ballType;
+            }
+        }
+        
+        return Ball.BallType.green; // we should not get here
+    }
+
+    //private int GetNumBallsByType(Ball.BallType ballType)
+    //{
+    //    int val = balls.Where(ball => ball.GetComponent<Ball>().ballType == ballType).Count();
+    //    Debug.Log("total " + ballType + ":" + val);
+    //    return val;
+    //}
+
+    private GameObject GetBallPFByType(Ball.BallType ballType)
+    {
         Ball val = ballTypes.Where(ball => ball.ballType == ballType).First();
         return val.gameObject;
     }
@@ -96,10 +126,10 @@ public class BallSpawner : MonoBehaviour
 
     public void BallDestroyedNotification(GameObject ballToDestroy)
     {
-        shouldSpawn = false; // don't spawn while chaning array
+        shouldSpawn = false; // don't spawn while changing array
 
-       // List<GameObject> newList = balls.Where(ball => ball == ballToDestroy).ToList<GameObject?>
-        //authorsList.Where(x => x.FirstName != "Bob").ToList();
+        List<GameObject> newList = balls.Where(ball => ball != ballToDestroy).ToList();
+        balls = newList;
 
         shouldSpawn = true;
     }
