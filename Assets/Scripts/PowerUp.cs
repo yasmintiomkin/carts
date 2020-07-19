@@ -6,16 +6,30 @@ public class PowerUp : MonoBehaviour
 {
     private GameObject[] ballsInScene;
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        ballsInScene = GameObject.FindGameObjectsWithTag("Ball");
+    //        foreach(GameObject ball in ballsInScene)
+    //        {
+    //            ball.GetComponent<Ball>().PowerOn();
+    //            Debug.Log("Powerup on");
+    //        }
+    //        Destroy(gameObject);
+    //    }
+    //}
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             ballsInScene = GameObject.FindGameObjectsWithTag("Ball");
-            foreach(GameObject ball in ballsInScene)
+            foreach (GameObject ball in ballsInScene)
             {
                 ball.GetComponent<Ball>().PowerOn();
                 Debug.Log("Powerup on");
             }
+            Destroy(gameObject);
         }
     }
 }

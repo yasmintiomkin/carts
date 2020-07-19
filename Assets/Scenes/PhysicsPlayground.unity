@@ -281,7 +281,7 @@ PrefabInstance:
     - target: {fileID: 3934862071804020739, guid: 5bce91ab2f42c924e9171c2efed10487,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.82
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 3934862071804020739, guid: 5bce91ab2f42c924e9171c2efed10487,
         type: 3}
@@ -458,6 +458,8 @@ MonoBehaviour:
   weightSpawnBallRed: 1
   weightSpawnBallGreen: 5
   force: 700
+  powerUpPrefab: {fileID: 1598509730821709982, guid: 00f841962f56f8640ab63e08af8d1004,
+    type: 3}
 --- !u!4 &240084276
 Transform:
   m_ObjectHideFlags: 0
@@ -2536,8 +2538,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025405884}
-  m_LocalRotation: {x: -0.0090834, y: -0.98211807, z: 0.049151752, w: -0.1815098}
-  m_LocalPosition: {x: 41.978428, y: 18.850002, z: 2.6481466}
+  m_LocalRotation: {x: -0.0090834, y: -0.98211807, z: 0.049151745, w: -0.1815098}
+  m_LocalPosition: {x: 41.978428, y: 18.850002, z: 12.498146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 501224705}
@@ -3915,6 +3917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreText: {fileID: 312193993}
+  ballSpawner: {fileID: 240084275}
 --- !u!4 &1443974640
 Transform:
   m_ObjectHideFlags: 0
@@ -6077,8 +6080,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110853102}
-  m_LocalRotation: {x: -0.0090834, y: -0.98211807, z: 0.049151752, w: -0.1815098}
-  m_LocalPosition: {x: 41.978428, y: 18.850002, z: 2.6481466}
+  m_LocalRotation: {x: -0.0090834, y: -0.98211807, z: 0.049151745, w: -0.1815098}
+  m_LocalPosition: {x: 41.978428, y: 18.850002, z: 12.498146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

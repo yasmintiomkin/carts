@@ -37,6 +37,7 @@ public class BallSpawner : MonoBehaviour
 
     [SerializeField]
     private int force = 100;
+    public GameObject powerUpPrefab;
 
     private bool shouldSpawn = true;
 
@@ -172,4 +173,9 @@ public class BallSpawner : MonoBehaviour
         shouldSpawn = true;
     }
    
+    public void SpawnPowerUp()
+    {
+        GameObject powerUP = Instantiate(powerUpPrefab, spawnVec, Quaternion.identity) as GameObject;
+        powerUP.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Acceleration);
+    }
 }
