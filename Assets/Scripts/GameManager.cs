@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public void AddPoint(float scoreAmount)
     {
         score += scoreAmount;
-        scoreText.text = $"Points: {score.ToString("N0")}";
+        scoreText.text = $"SCORE: {score.ToString("N0")}";
         Debug.Log(score);
 
     }
