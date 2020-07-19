@@ -15,8 +15,10 @@ namespace KartGame.KartSystems {
 
         public override Vector2 GenerateInput() {
             return new Vector2 {
-                x = Input.GetAxis(Horizontal),
-                y = Input.GetAxis(Vertical)
+                //x = Input.GetAxis(Horizontal),
+                //y = Input.GetAxis(Vertical)
+                x = joystick.Horizontal,
+                y = joystick.Vertical
             };
         }
     }
