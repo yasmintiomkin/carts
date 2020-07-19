@@ -44,19 +44,19 @@ public class Points : MonoBehaviour
     }
     void SetTextColor()
     {
-        if (score <= 100)
+        if (score == 25)
         {
             textOnGates.color = Color.red;
         }
-        else if(score >100 && score <= 250)
+        else if(score == 50)
         {
             textOnGates.color = Color.blue;
         }
-        else if(score >250 && score <= 450)
+        else if(score == 75)
         {
             textOnGates.color = Color.green;
         }
-        else if (score > 450)
+        else if (score > 99)
         {
             textOnGates.color = Color.Lerp(Color.yellow, Color.cyan, 1f);
         }

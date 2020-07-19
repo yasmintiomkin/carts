@@ -14,7 +14,7 @@ public class Propellor : MonoBehaviour
    
     void Update()
     {
-        transform.Rotate(new Vector3(0f, 0f, 200f) * Time.deltaTime);
+        transform.Rotate(new Vector3(0f, 200f, 0f) * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)

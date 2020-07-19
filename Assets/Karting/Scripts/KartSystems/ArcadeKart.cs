@@ -9,7 +9,10 @@ namespace KartGame.KartSystems
         /// <summary>
         /// Contains parameters that can adjust the kart's behaviors temporarily.
         /// </summary>
+        public AudioSource engine;
+
         [System.Serializable]
+
 
         public class StatPowerup
         {
@@ -187,6 +190,11 @@ namespace KartGame.KartSystems
                 if (current.sqrMagnitude > 0)
                 {
                     Input = current;
+                    engine.Play();
+                }
+                else
+                {
+                    engine.Stop();
                 }
             }
         }

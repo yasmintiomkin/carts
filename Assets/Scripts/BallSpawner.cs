@@ -52,6 +52,11 @@ public class BallSpawner : MonoBehaviour
         InvokeRepeating("SpawnBall", startIn, every);
     }
 
+    void Update()
+    {
+
+    }
+
     void SpawnBall()
     {
         if (!shouldSpawn)
