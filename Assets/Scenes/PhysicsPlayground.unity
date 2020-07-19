@@ -268,6 +268,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1116075628943918194, guid: 5bce91ab2f42c924e9171c2efed10487,
+        type: 3}
+      propertyPath: RunningSoundMaxPitch
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116075628943918194, guid: 5bce91ab2f42c924e9171c2efed10487,
+        type: 3}
+      propertyPath: RunningSoundMaxVolume
+      value: 0.28
+      objectReference: {fileID: 0}
     - target: {fileID: 3934862071804020739, guid: 5bce91ab2f42c924e9171c2efed10487,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6457,6 +6467,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.314
+      objectReference: {fileID: 0}
+    - target: {fileID: -6485570985407772587, guid: 1eb54e28e9b03ea4198036f8d369dada,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1071
+      objectReference: {fileID: 0}
+    - target: {fileID: -6485570985407772587, guid: 1eb54e28e9b03ea4198036f8d369dada,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0702
       objectReference: {fileID: 0}
     - target: {fileID: -5986851900957121898, guid: 1eb54e28e9b03ea4198036f8d369dada,
         type: 3}
